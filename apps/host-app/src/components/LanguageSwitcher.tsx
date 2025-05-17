@@ -1,54 +1,40 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import i18n from "../utils/i18n";
 
-const LANGUAGE_KEY = "app-language";
-
-const LanguageContainer = styled.div`
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  justify-content: center;
-`;
-
-const LanguageButton = styled.button`
-  margin: 5px;
-  padding: 8px 16px;
+const Button = styled.button<{ $active: boolean }>`
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
-  background: #646cff;
-  color: #fff;
-  font-weight: 600;
+  background: ${(props) => (props.$active ? "#646cff" : "#f0f0f0")};
+  color: ${(props) => (props.$active ? "white" : "#333")};
   cursor: pointer;
-  transition: background 0.2s;
-
-  &:hover {
-    background: #535bf2;
-  }
+  font-weight: bold;
 `;
 
-const LanguageSwitcher = () => {
-  const { t } = useTranslation();
+interface LanguageSwitcherProps {
+  selectedLanguage: string;
+  onLanguageChange: (lng: string) => void;
+}
 
-  const changeLanguage = (lng: string): void => {
-    i18n.changeLanguage(lng);
-    localStorage.setItem(LANGUAGE_KEY, lng);
-    // Dispatch a custom event that microapps can listen to
-    window.dispatchEvent(new Event("languageChanged"));
-  };
-  return (
-    <LanguageContainer>
-      <span>{t("languageSwitcher")}</span>
-      <LanguageButton onClick={() => changeLanguage("en")}>
-        English
-      </LanguageButton>
-      <LanguageButton onClick={() => changeLanguage("es")}>
-        Español
-      </LanguageButton>
-    </LanguageContainer>
-  );
-};
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
+  selectedLanguage,
+  onLanguageChange,
+}) => (
+  <div style={{ marginBottom: 20 }}>
+    <Button
+      $active={selectedLanguage === "en"}
+      onClick={() => onLanguageChange("en")}
+    >
+      EN
+    </Button>
+    <Button
+      $active={selectedLanguage === "es"}
+      onClick={() => onLanguageChange("es")}
+    >
+      ES
+    </Button>
+  </div>
+);
 
 export default LanguageSwitcher;

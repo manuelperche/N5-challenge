@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import i18n from './utils/i18n';
+import i18n from '../utils/i18n';
 
 const TYPE_COLORS: Record<string, string> = {
   normal: "#A8A77A",
@@ -87,11 +87,11 @@ const Type = styled.span<{ $typeName: string }>`
   display: inline-block;
 `;
 
-interface CardProps {
+interface PokemonCardProps {
   pokemon: Pokemon;
 }
 
-const Card: React.FC<CardProps> = ({ pokemon }) => {
+const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   return (
     <CardContainer>
       <Image 
@@ -115,4 +115,4 @@ const Card: React.FC<CardProps> = ({ pokemon }) => {
   );
 };
 
-export default Card; 
+export default PokemonCard; 

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import RickAndMorty from "microappOne/RickAndMorty";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import Pokedex from "microappTwo/PokemonList";
+import i18n from "./utils/i18n";
+
+import RickAndMorty from "microappOne/App";
+import Pokedex from "microappTwo/App";
 
 const Container = styled.div`
   width: 100vw;
@@ -48,10 +50,21 @@ type Microapp = "rick-and-morty" | "pokedex";
 const App: React.FC = () => {
   const { t } = useTranslation();
   const [activeApp, setActiveApp] = useState<Microapp>("pokedex");
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language || "en");
+
+  const handleLanguageChange = (lng: string) => {
+    setSelectedLanguage(lng);
+    i18n.changeLanguage(lng);
+    localStorage.setItem("app-language", lng);
+    window.dispatchEvent(new Event("languageChanged"));
+  };
 
   return (
     <Container>
-      <LanguageSwitcher />
+      <LanguageSwitcher
+        selectedLanguage={selectedLanguage}
+        onLanguageChange={handleLanguageChange}
+      />
       <Title>{t("greeting")}</Title>
 
       <Nav>
@@ -73,9 +86,9 @@ const App: React.FC = () => {
       {activeApp === "pokedex" && <Pokedex />}
 
       {/* <Subtitle>{t("microappTwoTitle")}</Subtitle>
-      <Suspense fallback={t("loadingCard")}>
-        <Card />
-      </Suspense> */}
+      <Suspense fallback={t("loadingCard")}> */}
+        {/* <Card /> */}
+      {/* </Suspense> */}
     </Container>
   );
 };

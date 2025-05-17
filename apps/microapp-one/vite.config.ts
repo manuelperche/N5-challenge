@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: "microapp-one",
+      name: "microappOne",
       filename: "remoteEntry.js",
       exposes: {
-        "./RickAndMorty": "./src/RickAndMorty.tsx",
+        "./App": "./src/App.tsx",
       },
       shared: ["react", "react-dom", "react-i18next", "styled-components"],
     }),
@@ -26,4 +26,4 @@ export default defineConfig({
     minify: false,
     cssCodeSplit: false,
   },
-}); 
+});
