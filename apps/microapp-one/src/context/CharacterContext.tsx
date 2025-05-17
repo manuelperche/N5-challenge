@@ -16,9 +16,10 @@ interface CharacterContextType {
   totalPages: number;
   loading: boolean;
   setCurrentPage: (page: number) => void;
+  getCharacters: () => Promise<void>;
 }
 
-const CharacterContext = createContext<CharacterContextType | undefined>(undefined);
+export const CharacterContext = createContext<CharacterContextType | undefined>(undefined);
 
 export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -26,20 +27,20 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchCharacters = async () => {
-      setLoading(true);
-      try {
-        const response = await getCharacters(currentPage);
-        setCharacters(response.results);
-        setTotalPages(Math.ceil(response.count / 10));
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchCharacters = async () => {
+    setLoading(true);
+    try {
+      const response = await getCharacters(currentPage);
+      setCharacters(response.results);
+      setTotalPages(Math.ceil(response.count / 10));
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchCharacters();
   }, [currentPage]);
 
@@ -51,6 +52,7 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         totalPages,
         loading,
         setCurrentPage,
+        getCharacters: fetchCharacters
       }}
     >
       {children}

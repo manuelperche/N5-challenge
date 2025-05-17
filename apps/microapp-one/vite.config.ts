@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
@@ -20,6 +21,12 @@ export default defineConfig({
   },
   preview: {
     port: Number(process.env.VITE_PORT) || 3001,
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/setupTests.ts",
+    css: true,
   },
   build: {
     target: "esnext",

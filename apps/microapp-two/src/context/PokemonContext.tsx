@@ -21,9 +21,10 @@ interface PokemonContextType {
   totalPages: number;
   loading: boolean;
   setCurrentPage: (page: number) => void;
+  getPokemons: () => Promise<void>;
 }
 
-const PokemonContext = createContext<PokemonContextType | undefined>(undefined);
+export const PokemonContext = createContext<PokemonContextType | undefined>(undefined);
 
 export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -32,31 +33,31 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 20;
 
+  const fetchPokemons = async () => {
+    setLoading(true);
+    try {
+      const offset = (currentPage - 1) * itemsPerPage;
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon?limit=${itemsPerPage}&offset=${offset}`
+      );
+      const data = await response.json();
+      setTotalPages(Math.ceil(data.count / itemsPerPage));
+
+      const pokemonDetails = await Promise.all(
+        data.results.map(async (pokemon: { url: string }) => {
+          const res = await fetch(pokemon.url);
+          return res.json();
+        })
+      );
+
+      setPokemons(pokemonDetails);
+    } catch (error) {
+      console.error('Error fetching pokemons:', error);
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const fetchPokemons = async () => {
-      setLoading(true);
-      try {
-        const offset = (currentPage - 1) * itemsPerPage;
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=${itemsPerPage}&offset=${offset}`
-        );
-        const data = await response.json();
-        setTotalPages(Math.ceil(data.count / itemsPerPage));
-
-        const pokemonDetails = await Promise.all(
-          data.results.map(async (pokemon: { url: string }) => {
-            const res = await fetch(pokemon.url);
-            return res.json();
-          })
-        );
-
-        setPokemons(pokemonDetails);
-      } catch (error) {
-        console.error('Error fetching pokemons:', error);
-      }
-      setLoading(false);
-    };
-
     fetchPokemons();
   }, [currentPage]);
 
@@ -68,6 +69,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
         totalPages,
         loading,
         setCurrentPage,
+        getPokemons: fetchPokemons
       }}
     >
       {children}
