@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useCharacters } from '../context/CharacterContext';
-import i18n from '../utils/i18n';
+import React from "react";
+import styled from "styled-components";
+import { useCharacters } from "../context/CharacterContext";
+import i18n from "../utils/i18n";
 
 const Container = styled.div`
   display: flex;
@@ -54,4 +54,4 @@ const Pagination: React.FC = () => {
   );
 };
 
-export default Pagination; 
+export default Pagination;

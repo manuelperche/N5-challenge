@@ -39,4 +39,4 @@ window.addEventListener("storage", (event) => {
   }
 });
 
-export default i18n; 
+export default i18n;

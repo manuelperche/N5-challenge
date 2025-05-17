@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getCharacters } from '../utils/getCharacters';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { getCharacters } from "../utils/getCharacters";
 
 interface Character {
   id: number;
@@ -19,9 +19,13 @@ interface CharacterContextType {
   getCharacters: () => Promise<void>;
 }
 
-export const CharacterContext = createContext<CharacterContextType | undefined>(undefined);
+export const CharacterContext = createContext<CharacterContextType | undefined>(
+  undefined
+);
 
-export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -52,7 +56,7 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         totalPages,
         loading,
         setCurrentPage,
-        getCharacters: fetchCharacters
+        getCharacters: fetchCharacters,
       }}
     >
       {children}
@@ -63,7 +67,7 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 export const useCharacters = () => {
   const context = useContext(CharacterContext);
   if (context === undefined) {
-    throw new Error('useCharacters must be used within a CharacterProvider');
+    throw new Error("useCharacters must be used within a CharacterProvider");
   }
   return context;
-}; 
+};

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface Pokemon {
   id: number;
@@ -24,9 +24,13 @@ interface PokemonContextType {
   getPokemons: () => Promise<void>;
 }
 
-export const PokemonContext = createContext<PokemonContextType | undefined>(undefined);
+export const PokemonContext = createContext<PokemonContextType | undefined>(
+  undefined
+);
 
-export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -52,7 +56,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
       setPokemons(pokemonDetails);
     } catch (error) {
-      console.error('Error fetching pokemons:', error);
+      console.error("Error fetching pokemons:", error);
     }
     setLoading(false);
   };
@@ -69,7 +73,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
         totalPages,
         loading,
         setCurrentPage,
-        getPokemons: fetchPokemons
+        getPokemons: fetchPokemons,
       }}
     >
       {children}
@@ -80,7 +84,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
 export const usePokemons = () => {
   const context = useContext(PokemonContext);
   if (context === undefined) {
-    throw new Error('usePokemons must be used within a PokemonProvider');
+    throw new Error("usePokemons must be used within a PokemonProvider");
   }
   return context;
-}; 
+};

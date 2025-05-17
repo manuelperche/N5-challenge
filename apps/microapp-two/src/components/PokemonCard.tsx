@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import i18n from '../utils/i18n';
+import React from "react";
+import styled from "styled-components";
+import i18n from "../utils/i18n";
 
 const TYPE_COLORS: Record<string, string> = {
   normal: "#A8A77A",
@@ -94,25 +94,33 @@ interface PokemonCardProps {
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   return (
     <CardContainer>
-      <Image 
-        src={pokemon.sprites.front_default} 
+      <Image
+        src={pokemon.sprites.front_default}
         alt={pokemon.name}
         onError={(e) => {
-          e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='16' fill='%23666'%3ENo Image%3C/text%3E%3C/svg%3E";
+          e.currentTarget.src =
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='16' fill='%23666'%3ENo Image%3C/text%3E%3C/svg%3E";
         }}
       />
       <Name>{pokemon.name}</Name>
       <Info>
-        {i18n.t("types")}: {pokemon.types.map((type) => (
+        {i18n.t("types")}:{" "}
+        {pokemon.types.map((type) => (
           <Type key={type.type.name} $typeName={type.type.name}>
-            {i18n.t(type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1))}
+            {i18n.t(
+              type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
+            )}
           </Type>
         ))}
       </Info>
-      <Info>{i18n.t("height")}: {pokemon.height / 10}m</Info>
-      <Info>{i18n.t("weight")}: {pokemon.weight / 10}kg</Info>
+      <Info>
+        {i18n.t("height")}: {pokemon.height / 10}m
+      </Info>
+      <Info>
+        {i18n.t("weight")}: {pokemon.weight / 10}kg
+      </Info>
     </CardContainer>
   );
 };
 
-export default PokemonCard; 
+export default PokemonCard;

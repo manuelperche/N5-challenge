@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import CharacterCard from './CharacterCard';
-import { useCharacters } from '../context/CharacterContext';
+import React from "react";
+import styled from "styled-components";
+import CharacterCard from "./CharacterCard";
+import { useCharacters } from "../context/CharacterContext";
 
 const Grid = styled.div`
   display: grid;
@@ -37,4 +37,4 @@ const CharacterGrid: React.FC = () => {
   );
 };
 
-export default CharacterGrid; 
+export default CharacterGrid;

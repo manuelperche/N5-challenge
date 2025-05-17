@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import PokemonCard from './PokemonCard';
-import { usePokemons } from '../context/PokemonContext';
+import React from "react";
+import styled from "styled-components";
+import PokemonCard from "./PokemonCard";
+import { usePokemons } from "../context/PokemonContext";
 
 const Grid = styled.div`
   display: grid;
@@ -37,4 +37,4 @@ const PokemonGrid: React.FC = () => {
   );
 };
 
-export default PokemonGrid; 
+export default PokemonGrid;
