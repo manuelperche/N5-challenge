@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd apps/host-app && pnpm build",
+  "outputDirectory": "apps/host-app/dist",
+  "installCommand": "pnpm install",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+} 
