@@ -17,6 +17,27 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const PresentationHeader = styled.div`
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+`;
+
+const ChallengeTitle = styled.h2`
+  color: #fff;
+  margin: 0;
+  font-size: 1.5rem;
+`;
+
+const AuthorName = styled.p`
+  color: #fff;
+  margin: 0.5rem 0 0;
+  font-size: 1.1rem;
+`;
+
 const Title = styled.h1`
   font-size: 3.2em;
   line-height: 1.1;
@@ -67,6 +88,12 @@ const App: React.FC = () => {
         selectedLanguage={selectedLanguage}
         onLanguageChange={handleLanguageChange}
       />
+
+      <PresentationHeader>
+        <ChallengeTitle>{t("title")}</ChallengeTitle>
+        <AuthorName>{t("author")}</AuthorName>
+      </PresentationHeader>
+
       <Title>{t("greeting")}</Title>
 
       <Nav>

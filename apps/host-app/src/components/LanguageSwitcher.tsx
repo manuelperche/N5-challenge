@@ -26,13 +26,13 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       $active={selectedLanguage === "en"}
       onClick={() => onLanguageChange("en")}
     >
-      EN
+      English
     </Button>
     <Button
       $active={selectedLanguage === "es"}
       onClick={() => onLanguageChange("es")}
     >
-      ES
+      Español
     </Button>
   </div>
 );

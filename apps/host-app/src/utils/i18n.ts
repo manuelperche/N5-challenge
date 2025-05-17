@@ -19,6 +19,8 @@ const resources: TranslationResources = {
       loadingButton: "Loading Button...",
       loadingCard: "Loading Card...",
       languageSwitcher: "Switch Language:",
+      title: "N5 Challenge",
+      author: "Submitted by Manuel Perche",
     },
   },
   es: {
@@ -29,6 +31,8 @@ const resources: TranslationResources = {
       loadingButton: "Cargando Botón...",
       loadingCard: "Cargando Tarjeta...",
       languageSwitcher: "Cambiar Idioma:",
+      title: "Reto N5",
+      author: "Realizado por Manuel Perche",
     },
   },
 };
