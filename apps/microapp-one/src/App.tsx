@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
+import React from "react";
 import CharacterGrid from "./components/CharacterGrid";
 import Pagination from "./components/Pagination";
 import { CharacterProvider } from "./context/CharacterContext";

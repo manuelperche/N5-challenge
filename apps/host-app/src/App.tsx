@@ -50,7 +50,9 @@ type Microapp = "rick-and-morty" | "pokedex";
 const App: React.FC = () => {
   const { t } = useTranslation();
   const [activeApp, setActiveApp] = useState<Microapp>("pokedex");
-  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language || "en");
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    i18n.language || "en"
+  );
 
   const handleLanguageChange = (lng: string) => {
     setSelectedLanguage(lng);
@@ -84,11 +86,6 @@ const App: React.FC = () => {
 
       {activeApp === "rick-and-morty" && <RickAndMorty />}
       {activeApp === "pokedex" && <Pokedex />}
-
-      {/* <Subtitle>{t("microappTwoTitle")}</Subtitle>
-      <Suspense fallback={t("loadingCard")}> */}
-        {/* <Card /> */}
-      {/* </Suspense> */}
     </Container>
   );
 };
