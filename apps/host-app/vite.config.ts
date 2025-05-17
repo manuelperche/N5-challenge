@@ -11,13 +11,13 @@ export default defineConfig({
       name: "host-app",
       remotes: {
         microappOne: "http://localhost:3001/assets/remoteEntry.js",
-        microappTwo: "http://localhost:3002/assets/remoteEntry.js",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "react-i18next", "styled-components"],
     }),
   ],
   server: {
     port: 3000,
+    hmr: true,
   },
   preview: {
     port: 3000,
@@ -25,11 +25,12 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "./src/setupTests.js", // you'll create this file next
-    css: true, // if you have global css imports
+    setupFiles: "./src/setupTests.ts",
+    css: true,
   },
   build: {
     target: "esnext",
     minify: false,
+    cssCodeSplit: false,
   },
-});
+}); 

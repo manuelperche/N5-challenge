@@ -7,22 +7,22 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: "microappOne",
+      name: "microappTwo",
       filename: "remoteEntry.js",
       exposes: {
-        "./Button": "./src/Button.jsx", // Assuming you'll create Button.jsx in src
+        "./Card": "./src/Card.tsx",
       },
       shared: ["react", "react-dom"],
     }),
   ],
   server: {
-    port: 3001,
+    port: 3002,
   },
   preview: {
-    port: 3001,
+    port: 3002,
   },
   build: {
     target: "esnext",
     minify: false,
   },
-});
+}); 

@@ -1,0 +1,21 @@
+{
+  "status": "Status",
+  "species": "Species",
+  "Human": "Human",
+  "Alien": "Alien",
+  "Humanoid": "Humanoid",
+  "Animal": "Animal",
+  "Robot": "Robot",
+  "Cronenberg": "Cronenberg",
+  "Disease": "Disease",
+  "Poopybutthole": "Poopybutthole",
+  "Mythological Creature": "Mythological Creature",
+  "Unknown": "Unknown",
+  "previous": "Previous",
+  "next": "Next",
+  "page": "Page",
+  "of": "of",
+  "Alive": "Alive",
+  "Dead": "Dead",
+  "unknown": "Unknown"
+}

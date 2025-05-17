@@ -2,8 +2,16 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+interface TranslationResources {
+  [key: string]: {
+    translation: {
+      [key: string]: string;
+    };
+  };
+}
+
 // Placeholder for translations
-const resources = {
+const resources: TranslationResources = {
   en: {
     translation: {
       "greeting": "Host Application",

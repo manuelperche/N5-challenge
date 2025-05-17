@@ -1,14 +1,16 @@
 {
-  "name": "N5-Challenge",
+  "name": "n5-challenge",
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev --parallel",
+    "dev": "turbo build --filter=microapp-one --filter=microapp-two && cd apps/microapp-one && pnpm preview & cd apps/microapp-two && pnpm preview & cd apps/host-app && pnpm dev",
+    "watch": "nodemon --watch apps/microapp-one/src --watch apps/microapp-two/src --ext ts,tsx,css --ignore '**/node_modules/**' --exec 'pnpm run dev'",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo check-types"
   },
   "devDependencies": {
+    "nodemon": "^3.0.3",
     "prettier": "^3.5.3",
     "turbo": "^2.5.3",
     "typescript": "5.8.2"

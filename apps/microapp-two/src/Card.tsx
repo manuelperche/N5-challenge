@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  elevated?: boolean;
+  children?: React.ReactNode;
+}
+
 // BEM block: 'card-microapp-two'
-const StyledCard = styled.div`
+const StyledCard = styled.div<{ elevated?: boolean }>`
   /* Element: implicitly the card itself */
   padding: 20px;
   background-color: lightgreen;
@@ -18,7 +23,7 @@ const StyledCard = styled.div`
   `}
 `;
 
-const Card = ({ children, ...props }) => {
+const Card: React.FC<CardProps> = ({ children, ...props }) => {
   return (
     <StyledCard {...props} className="card-microapp-two">
       {children || "Hello from Microapp Two Card"}
