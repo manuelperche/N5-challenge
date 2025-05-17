@@ -10,7 +10,7 @@ export default defineConfig({
       name: "microappTwo",
       filename: "remoteEntry.js",
       exposes: {
-        "./Pokedex": "./src/App.tsx",
+        "./PokemonList": "./src/App.tsx",
       },
       shared: ["react", "react-dom"],
     }),

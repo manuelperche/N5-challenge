@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import RickAndMorty from "microappOne/RickAndMorty";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import Pokedex from "microappTwo/Pokedex";
+import Pokedex from "microappTwo/PokemonList";
 
 const Container = styled.div`
   width: 100vw;
