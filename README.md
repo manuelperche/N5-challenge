@@ -72,6 +72,23 @@ Next, you can link your Turborepo to your Remote Cache by running the following 
 npx turbo link
 ```
 
+## Environment Variables
+
+The application uses environment variables to configure ports and URLs. Create `.env` files in both `apps/host-app` and `apps/microapp-one` directories with the following variables:
+
+### Host App (.env)
+```env
+VITE_PORT=3000
+VITE_MICROAPP_ONE_URL=http://localhost:3001/assets/remoteEntry.js
+```
+
+### Microapp One (.env)
+```env
+VITE_PORT=3001
+```
+
+These variables are optional - if not set, the apps will use their default ports (3000 for host app, 3001 for microapp).
+
 ## Useful Links
 
 Learn more about the power of Turborepo:

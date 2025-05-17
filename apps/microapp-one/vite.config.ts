@@ -2,24 +2,24 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: "microappOne",
+      name: "microapp-one",
       filename: "remoteEntry.js",
       exposes: {
-        "./RickAndMorty": "./src/App.tsx",
+        "./RickAndMorty": "./src/RickAndMorty.tsx",
       },
       shared: ["react", "react-dom", "react-i18next", "styled-components"],
     }),
   ],
   server: {
-    port: 3001,
+    port: Number(process.env.VITE_PORT) || 3001,
   },
   preview: {
-    port: 3001,
+    port: Number(process.env.VITE_PORT) || 3001,
   },
   build: {
     target: "esnext",

@@ -3,24 +3,24 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     federation({
       name: "host-app",
       remotes: {
-        microappOne: "http://localhost:3001/assets/remoteEntry.js",
+        microappOne: process.env.VITE_MICROAPP_ONE_URL || "http://localhost:3001/assets/remoteEntry.js",
       },
-      shared: ["react", "react-dom", "react-i18next", "styled-components"],
+      shared: ["react", "react-dom", "styled-components"],
     }),
   ],
   server: {
-    port: 3000,
+    port: Number(process.env.VITE_PORT) || 3000,
     hmr: true,
   },
   preview: {
-    port: 3000,
+    port: Number(process.env.VITE_PORT) || 3000,
   },
   test: {
     globals: true,
