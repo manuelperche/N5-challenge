@@ -1,49 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-
 import RickAndMorty from "microappOne/RickAndMorty";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-// import Card from "microappTwo/Card";
+import Pokedex from "microappTwo/Pokedex";
 
 const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
   margin: 0;
   padding: 2rem;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center;
 `;
 
 const Title = styled.h1`
   font-size: 3.2em;
   line-height: 1.1;
   margin-bottom: 1rem;
-  text-align: center;
 `;
 
-const Subtitle = styled.h2`
-  font-size: 2.4em;
-  line-height: 1.1;
-  margin: 2rem 0 1rem;
-  text-align: center;
+const Nav = styled.nav`
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  justify-content: center;
 `;
+
+const Button = styled.button<{ $active: boolean }>`
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: ${(props) => (props.$active ? "#646cff" : "#f0f0f0")};
+  color: ${(props) => (props.$active ? "white" : "#333")};
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+
+  &:hover {
+    background: ${(props) => (props.$active ? "#535bf2" : "#e0e0e0")};
+  }
+`;
+
+type Microapp = "rick-and-morty" | "pokedex";
 
 const App: React.FC = () => {
   const { t } = useTranslation();
+  const [activeApp, setActiveApp] = useState<Microapp>("pokedex");
 
   return (
     <Container>
       <LanguageSwitcher />
-
       <Title>{t("greeting")}</Title>
 
-      <Subtitle>{t("microappOneTitle")}</Subtitle>
+      <Nav>
+        <Button
+          $active={activeApp === "pokedex"}
+          onClick={() => setActiveApp("pokedex")}
+        >
+          Pokedex
+        </Button>
+        <Button
+          $active={activeApp === "rick-and-morty"}
+          onClick={() => setActiveApp("rick-and-morty")}
+        >
+          Rick and Morty
+        </Button>
+      </Nav>
 
-      <RickAndMorty />
+      {activeApp === "rick-and-morty" && <RickAndMorty />}
+      {activeApp === "pokedex" && <Pokedex />}
 
       {/* <Subtitle>{t("microappTwoTitle")}</Subtitle>
       <Suspense fallback={t("loadingCard")}>

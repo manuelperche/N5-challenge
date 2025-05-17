@@ -11,6 +11,7 @@ export default defineConfig({
       name: "host-app",
       remotes: {
         microappOne: process.env.VITE_MICROAPP_ONE_URL || "http://localhost:3001/assets/remoteEntry.js",
+        microappTwo: process.env.VITE_MICROAPP_TWO_URL || "http://localhost:3002/assets/remoteEntry.js",
       },
       shared: ["react", "react-dom", "styled-components"],
     }),
